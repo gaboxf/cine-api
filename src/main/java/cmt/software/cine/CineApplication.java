@@ -7,7 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CineApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(CineApplication.class, args);
+		/*String test = "hola quiero ser un hash";
+		System.out.println("Value whithout hashCode: " + test);
+		System.out.println("Value whith hashCode: " + test.hashCode());*/
 	}
 
 }
