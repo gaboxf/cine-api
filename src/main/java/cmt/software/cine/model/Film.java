@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "cinemas")
-public class Cinema implements Serializable {
+@Table(name = "films")
+public class Film implements Serializable {
     /**
     * Definición de los atributos de la clase, acompañado de la notación correspondiente
     * de Spring Boot para hacer referencia a la base de datos.
@@ -13,41 +13,28 @@ public class Cinema implements Serializable {
     * */
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cinema_id")
+    @Column(name = "id")
     private Long id;
-
-    @Column(name = "cinema_name")
+    @Column(name = "name")
     private String name;
-
-    @Column(name = "cinema_manager")
-    private String manager;
-
-    @Column(name = "cinema_address")
-    private String address;
-
-    @Column(name = "cinema_phone")
-    private String phone;
-
-    @Column(name = "cinema_seat_capacity")
-    private Integer seatCapacity;
-
-    @Column(name = "cinema_other_details")
-    private String otherDetails;
+    @Column(name = "length_min")
+    private Integer lengthMin;
+    @Column(name = "description")
+    private String description;
 
     /**
      * Definición de los constructores del objeto
      * La documentación oficial recomienda dejar un constructor vacio ademas del
      * que tiene todos los atributos necesarios para operar.
      * */
-    public Cinema() {
+    public Film() {
     }
-    public Cinema(String name, String manager, String address, String phone, Integer seatCapacity, String otherDetails) {
+
+    public Film(Long id, String name, Integer lengthMin, String description) {
+        this.id = id;
         this.name = name;
-        this.manager = manager;
-        this.address = address;
-        this.phone = phone;
-        this.seatCapacity = seatCapacity;
-        this.otherDetails = otherDetails;
+        this.lengthMin = lengthMin;
+        this.description = description;
     }
 
     /**
@@ -72,44 +59,20 @@ public class Cinema implements Serializable {
         this.name = name;
     }
 
-    public String getManager() {
-        return manager;
+    public Integer getLengthMin() {
+        return lengthMin;
     }
 
-    public void setManager(String manager) {
-        this.manager = manager;
+    public void setLengthMin(Integer lengthMin) {
+        this.lengthMin = lengthMin;
     }
 
-    public String getAddress() {
-        return address;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Integer getSeatCapacity() {
-        return seatCapacity;
-    }
-
-    public void setSeatCapacity(Integer seatCapacity) {
-        this.seatCapacity = seatCapacity;
-    }
-
-    public String getOtherDetails() {
-        return otherDetails;
-    }
-
-    public void setOtherDetails(String otherDetails) {
-        this.otherDetails = otherDetails;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -126,7 +89,7 @@ public class Cinema implements Serializable {
             return false;
         }
         if (this.getClass().equals(obj.getClass())) {
-            Cinema other = (Cinema) obj;
+            Film other = (Film) obj;
             if (this.getId() == null || other.getId() == null) {
                 return false;
             }
@@ -139,6 +102,6 @@ public class Cinema implements Serializable {
 
     @Override
     public String toString() {
-        return "Cinema [ name = " + getName() + ", address = " + getAddress() + " ]";
+        return "Film [ name = " + getName() + ", address = " + getDescription() + " ]";
     }
 }
